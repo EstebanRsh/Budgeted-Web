@@ -1,0 +1,28 @@
+# Dependencias
+/vendor/
+/node_modules/
+
+# Variables de entorno (NUNCA subir)
+.env
+.env.local
+.env.*.local
+
+# Archivos de subida y logs
+/public/uploads/*
+!/public/uploads/.gitkeep
+!/public/uploads/logos/.gitkeep
+/logs/*
+!/logs/.gitkeep
+*.log
+
+# IDEs
+.vscode/
+.idea/
+*.code-workspace
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+*.swo
