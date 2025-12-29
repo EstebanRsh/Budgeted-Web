@@ -1,90 +1,168 @@
-# Presupuestador
+<div align="center">
 
-Sistema web completo para la gestión de presupuestos, clientes y productos. Desarrollado en PHP nativo con arquitectura MVC, permite a las empresas crear, editar, duplicar y exportar presupuestos de forma profesional.
+# 📊 Presupuestador Web
 
-## Características principales
+### Sistema profesional de gestión de presupuestos
 
-### Gestión de Presupuestos
-- ✅ Crear presupuestos con múltiples ítems
-- ✅ Editar y duplicar presupuestos existentes
-- ✅ Exportación a PDF y Excel
-- ✅ Vista de impresión optimizada
-- ✅ Búsqueda y filtrado avanzado
-- ✅ Numeración automática consecutiva
-- ✅ Cálculo automático de totales
-- ✅ Validez configurable por presupuesto
+[![PHP Version](https://img.shields.io/badge/PHP-8.0%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
+[![MySQL](https://img.shields.io/badge/MySQL-5.7%2B-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
-### Gestión de Clientes
-- ✅ ABM completo de clientes
-- ✅ Datos fiscales (CUIT/DNI, condición IVA)
-- ✅ Información de contacto
-- ✅ Validación de CUIT/DNI argentino
-- ✅ Búsqueda en tiempo real
+[Demo](#-demo) • [Características](#-características) • [Instalación](#-instalación) • [Tecnologías](#-tecnologías)
 
-### Catálogo de Productos
-- ✅ Gestión de productos y servicios
-- ✅ Actualización rápida de precios
-- ✅ Creación automática desde presupuestos
-- ✅ Descripción y código de producto
+</div>
 
-### Panel de Administración
-- ✅ Gestión de usuarios y empresas
-- ✅ Aprobación de registros
-- ✅ Activación/desactivación de cuentas
-- ✅ Logs de correo electrónico
-- ✅ Auditoría de acciones
+---
 
-### Características Técnicas
-- ✅ Autenticación con protección CSRF
-- ✅ Rate limiting en login
-- ✅ Validaciones del lado del cliente y servidor
-- ✅ Modo oscuro/claro
-- ✅ Diseño responsive (Bootstrap 5)
-- ✅ Búsqueda instantánea con HTMX
-- ✅ Paginación eficiente
-- ✅ Subida de logos de empresa
+## 📋 Descripción
 
-## Requisitos del sistema
+**Presupuestador Web** es un sistema completo de gestión empresarial desarrollado en PHP nativo con arquitectura MVC. Permite a las empresas crear, administrar y exportar presupuestos de forma profesional, gestionar clientes, productos y generar documentos en PDF y Excel.
 
-- **PHP:** 8.0 o superior
-- **MySQL:** 5.7 o superior / MariaDB 10.3+
-- **Extensiones PHP requeridas:**
-  - PDO MySQL
-  - mbstring
-  - GD (para manejo de imágenes)
-  - fileinfo
-- **Composer:** Para gestión de dependencias
-- **Servidor web:** Apache 2.4+ (con mod_rewrite) o Nginx
+Ideal para pequeñas y medianas empresas que necesitan un sistema robusto, seguro y fácil de usar para la gestión de cotizaciones comerciales.
 
-## Instalación
+## ✨ Características
 
-### 1. Clonar el repositorio
+### 🧾 Gestión de Presupuestos
+- Creación de presupuestos con múltiples ítems y productos
+- Edición, duplicación y eliminación de presupuestos
+- Exportación profesional a **PDF** y **Excel**
+- Vista de impresión optimizada
+- Búsqueda y filtrado avanzado en tiempo real
+- Numeración automática consecutiva
+- Cálculo automático de subtotales, IVA y totales
+- Configuración de validez por presupuesto
 
-```bash
-git clone https://github.com/tu-usuario/presupuestador.git
-cd presupuestador
+### 👥 Gestión de Clientes
+- ABM completo (Alta, Baja, Modificación)
+- Datos fiscales argentinos (CUIT/DNI, Condición IVA)
+- Información de contacto (teléfono, email, domicilio)
+- Validación de formato CUIT/DNI
+- Búsqueda instantánea con HTMX
+
+### 📦 Catálogo de Productos
+- Gestión completa de productos y servicios
+- Actualización rápida de precios
+- Creación automática desde presupuestos
+- Código y descripción detallada
+
+### 🛡️ Panel de Administración
+- Gestión de usuarios y empresas (SuperAdmin)
+- Aprobación de registros de nuevas empresas
+- Activación/desactivación de cuentas
+- Logs de correo electrónico
+- Auditoría completa de acciones
+
+### 🎨 Interfaz y UX
+- **Modo oscuro/claro** con persistencia en localStorage
+- Diseño **100% responsive** (Bootstrap 5)
+- Búsqueda instantánea sin recargar página (HTMX)
+- Notificaciones toast elegantes
+- Paginación eficiente
+- Subida de logos de empresa
+
+### 🔒 Seguridad
+- Protección **CSRF** en todos los formularios
+- **Prepared Statements** (PDO) contra SQL Injection
+- Validación y sanitización de entradas
+- Hashing seguro con **bcrypt**
+- **Rate limiting** en login (5 intentos / 15 min)
+- Validación de pertenencia empresa-recursos
+- Cookies de sesión HTTP-only
+- Validaciones lado cliente y servidor
+
+## 🎯 Primer uso
+
+Después de instalar la base de datos, deberás crear tu primer usuario SuperAdmin manualmente:
+
+```sql
+INSERT INTO usuarios (empresa_id, nombre, email, password_hash, is_superadmin, estado, created_at, updated_at)
+VALUES (NULL, 'Tu Nombre', 'tu@email.com', '$2y$10$...', 1, 'activo', NOW(), NOW());
 ```
 
-### 2. Instalar dependencias
+Genera el hash de tu contraseña con:
+```php
+echo password_hash('tu_contraseña_segura', PASSWORD_BCRYPT);
+```
+
+## 🛠️ Tecnologías
+
+<table>
+  <tr>
+    <td align="center"><strong>Backend</strong></td>
+    <td align="center"><strong>Frontend</strong></td>
+    <td align="center"><strong>Base de Datos</strong></td>
+    <td align="center"><strong>Librerías</strong></td>
+  </tr>
+  <tr>
+    <td>
+      • PHP 8.0+<br>
+      • Arquitectura MVC<br>
+      • PDO (MySQL)<br>
+      • Composer
+    </td>
+    <td>
+      • Bootstrap 5.3<br>
+      • JavaScript Vanilla<br>
+      • HTMX<br>
+      • CSS Custom Properties
+    </td>
+    <td>
+      • MySQL 5.7+<br>
+      • MariaDB 10.3+<br>
+      • UTF8mb4
+    </td>
+    <td>
+      • PHPMailer<br>
+      • Dompdf<br>
+      • PhpSpreadsheet<br>
+      • ZipStream
+    </td>
+  </tr>
+</table>
+
+## ⚠️ IMPORTANTE - Seguridad en Producción
+
+**Antes de subir a un hosting público, DEBES:**
+
+1. ✅ **Cambiar TODAS las credenciales por defecto**
+2. ✅ **Configurar `.env`** con credenciales reales (nunca subir `.env` a Git)
+3. ✅ **Display errors desactivado** (ya configurado en `public/index.php`)
+4. ✅ **Usar HTTPS obligatorio** - Protege credenciales en tránsito
+5. ✅ **Permisos restrictivos** en `uploads/` y `logs/` (755 máximo)
+6. ✅ **Eliminar scripts de prueba** del directorio `app/scripts/`
+7. ⚠️ **Implementar `session_regenerate_id()`** después del login
+8. ⚠️ **Cookies seguras**: `session.cookie_secure = 1` y `session.cookie_httponly = 1`
+
+## 📥 Instalación
+
+### Requisitos previos
+
+- PHP 8.0 o superior
+- MySQL 5.7+ / MariaDB 10.3+
+- Composer
+- Servidor web (Apache con mod_rewrite o Nginx)
+- Extensiones PHP: `pdo_mysql`, `mbstring`, `gd`, `fileinfo`
+
+### Pasos de instalación
+
+#### 1️⃣ Clonar el repositorio
+
+```bash
+git clone https://github.com/EstebanRsh/Budgeted-Web.git
+cd Budgeted-Web
+```
+
+#### 2️⃣ Instalar dependencias
 
 ```bash
 composer install
 ```
 
-Esto instalará las siguientes librerías:
-- **PHPMailer** - Envío de correos electrónicos
-- **Dompdf** - Generación de PDFs
-- **PhpSpreadsheet** - Exportación a Excel
-- **ZipStream** - Creación de archivos ZIP
+#### 3️⃣ Crear base de datos
 
-### 3. Configurar base de datos
-
-Crear la base de datos MySQL:
-
-```bash
-mysql -u root -p
+```sql
 CREATE DATABASE presupuestos_app CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-exit
 ```
 
 Importar el schema:
@@ -93,249 +171,168 @@ Importar el schema:
 mysql -u root -p presupuestos_app < presupuestos_app.sql
 ```
 
-### 4. Configurar variables de entorno
-
-Copiar el archivo de ejemplo y configurar:
+#### 4️⃣ Configurar variables de entorno
 
 ```bash
 cp .env.example .env
 ```
 
-Editar el archivo `.env` con tus credenciales:
+Editar `.env` con tus credenciales:
 
 ```ini
-# Configuración de base de datos
+# Base de datos
 DB_HOST=localhost
 DB_NAME=presupuestos_app
 DB_USER=root
 DB_PASS=tu_contraseña
-DB_CHARSET=utf8mb4
 
-# Configuración de correo (opcional)
+# Correo (opcional)
 MAIL_ENABLED=true
-SMTP_HOST=smtp.tuservidor.com
+SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
-SMTP_USER=tu_email@dominio.com
-SMTP_PASSWORD=tu_contraseña_smtp
-SMTP_ENCRYPTION=tls
-SMTP_FROM_EMAIL=noreply@tudominio.com
-SMTP_FROM_NAME=Presupuestador
+SMTP_USER=tu_email@gmail.com
+SMTP_PASSWORD=tu_contraseña_app
 ```
 
-### 5. Configurar permisos
+#### 5️⃣ Configurar permisos
 
 ```bash
-chmod 755 public/uploads
-chmod 755 public/uploads/logos
-chmod 755 logs
+chmod -R 755 public/uploads logs
+chown -R www-data:www-data public/uploads logs
 ```
 
-### 6. Configurar el servidor web
+#### 6️⃣ Configurar servidor web
 
-#### Apache (.htaccess ya incluido)
-
-Asegurarse de que `mod_rewrite` esté habilitado:
-
-```bash
-sudo a2enmod rewrite
-sudo service apache2 restart
-```
-
-El DocumentRoot debe apuntar a la carpeta `public/`:
+**Apache** (DocumentRoot → `public/`)
 
 ```apache
 <VirtualHost *:80>
     ServerName presupuestador.local
-    DocumentRoot /ruta/al/proyecto/presupuestador/public
+    DocumentRoot /ruta/al/proyecto/public
 
-    <Directory /ruta/al/proyecto/presupuestador/public>
+    <Directory /ruta/al/proyecto/public>
         AllowOverride All
         Require all granted
     </Directory>
 </VirtualHost>
 ```
 
-#### Nginx
+Habilitar mod_rewrite:
 
-```nginx
-server {
-    listen 80;
-    server_name presupuestador.local;
-    root /ruta/al/proyecto/presupuestador/public;
-
-    index index.php;
-
-    location / {
-        try_files $uri $uri/ /index.php?$query_string;
-    }
-
-    location ~ \.php$ {
-        fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
-        fastcgi_index index.php;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include fastcgi_params;
-    }
-}
+```bash
+sudo a2enmod rewrite
+sudo service apache2 restart
 ```
 
-### 7. Acceder al sistema
+#### 7️⃣ Acceder al sistema
 
-Abrir el navegador en: `http://localhost/presupuestador` o tu dominio configurado.
+Abrir navegador en: `http://localhost/presupuestador`
 
-## Credenciales de prueba
-
-El archivo SQL incluye un usuario superadministrador para comenzar:
-
-```
-Email: admin@presupuestador.com
-Contraseña: admin123
-```
-
-**⚠️ IMPORTANTE:** Cambiar esta contraseña inmediatamente en producción.
-
-## Estructura del proyecto
+## 📂 Estructura del proyecto
 
 ```
 presupuestador/
 ├── app/
-│   ├── controllers/       # Controladores MVC
-│   ├── models/           # Modelos de datos
-│   ├── views/            # Vistas (HTML + PHP)
-│   ├── helpers/          # Funciones auxiliares
-│   ├── services/         # Servicios (Email, etc.)
-│   └── scripts/          # Scripts de mantenimiento
-├── config/               # Configuración de la app
-├── logs/                 # Logs de la aplicación
-├── public/               # DocumentRoot (acceso público)
-│   ├── assets/          # CSS, JS, imágenes
-│   └── uploads/         # Archivos subidos
-├── vendor/              # Dependencias de Composer
-├── .env                 # Configuración de entorno
+│   ├── controllers/        # Controladores MVC
+│   ├── models/            # Modelos de datos
+│   ├── views/             # Vistas (HTML + PHP)
+│   ├── helpers/           # Funciones auxiliares
+│   ├── services/          # Servicios (Email, etc.)
+│   └── scripts/           # Scripts de mantenimiento
+├── config/                # Configuración
+├── logs/                  # Logs de aplicación
+├── public/                # DocumentRoot
+│   ├── assets/           # CSS, JS, imágenes
+│   │   ├── css/
+│   │   ├── js/
+│   │   └── icons/
+│   ├── uploads/          # Logos de empresas
+│   └── index.php         # Front Controller
+├── vendor/               # Dependencias Composer
+├── .env.example
 ├── .gitignore
 ├── composer.json
-└── presupuestos_app.sql # Schema de base de datos
+├── LICENSE
+└── presupuestos_app.sql  # Schema DB
 ```
 
-## Uso del sistema
+## 🚀 Uso
 
-### Flujo de trabajo típico
+### Flujo de trabajo
 
-1. **Registrar empresa:** Los usuarios se registran y esperan aprobación del admin
-2. **Configurar empresa:** Cargar logo, datos fiscales, información de contacto
-3. **Cargar clientes:** Agregar clientes con sus datos fiscales
-4. **Crear productos:** Definir catálogo de productos/servicios
-5. **Generar presupuestos:** Crear presupuestos asociando cliente + productos
-6. **Exportar:** Descargar en PDF o Excel, o imprimir directamente
+1. **Registro de empresa** → Nuevo usuario se registra y espera aprobación
+2. **Configuración** → Cargar logo, datos fiscales, información de contacto
+3. **Clientes** → Agregar clientes con sus datos fiscales completos
+4. **Productos** → Definir catálogo de productos/servicios con precios
+5. **Presupuestos** → Crear presupuestos combinando cliente + productos
+6. **Exportar** → Generar PDF/Excel o imprimir directamente
 
 ### Roles de usuario
 
-- **SuperAdmin:** Gestión completa del sistema, aprobación de usuarios
-- **Usuario estándar:** Gestión de su empresa, clientes, productos y presupuestos
+| Rol | Permisos |
+|-----|----------|
+| **SuperAdmin** | Gestión completa del sistema, aprobación de empresas, administración de usuarios |
+| **Usuario** | Gestión de su empresa, clientes, productos y presupuestos |
 
-## Características de seguridad
+## 📊 Exportación
 
-- ✅ Protección CSRF en todos los formularios
-- ✅ Prepared statements (PDO) contra SQL Injection
-- ✅ Validación y sanitización de datos
-- ✅ Hashing seguro de contraseñas (bcrypt)
-- ✅ Rate limiting en login (5 intentos / 15 min)
-- ✅ Validación de pertenencia empresa-recursos
-- ✅ HTTP-only cookies de sesión
-- ✅ Validaciones del lado cliente y servidor
-
-## Exportación de datos
-
-### PDF
-Los presupuestos se exportan usando **Dompdf** con formato profesional incluyendo:
-- Logo de la empresa
+### PDF (Dompdf)
+- Logo de empresa
 - Datos fiscales completos
 - Detalle de ítems con cantidades y precios
-- Total general
-- Observaciones
+- Subtotales, IVA y total general
+- Observaciones y condiciones
 
-### Excel
-Exportación mediante **PhpSpreadsheet** con:
-- Formato profesional con colores
-- Cabeceras destacadas
-- Fórmulas automáticas para totales
-- Filtros y freeze de encabezados
-- Formato de moneda para importes
+### Excel (PhpSpreadsheet)
+- Formato profesional con estilos
+- Cabeceras destacadas con colores
+- Fórmulas automáticas para cálculos
+- Filtros y congelación de encabezados
+- Formato de moneda argentino
 
-## Desarrollo
+## 🔧 Scripts útiles
 
-### Scripts útiles
-
-Resetear datos de demostración:
 ```bash
+# Resetear datos de demostración
 php app/scripts/reset_demo.php
-```
 
-Generar datos de prueba:
-```bash
+# Generar datos de prueba
 php app/scripts/seed_demo.php
+
+# Crear nuevos usuarios
+php app/scripts/seed_users.php
 ```
 
-### Convenciones de código
+## 🐛 Solución de problemas
 
-- **PSR-12** para estilo de código PHP
-- **declare(strict_types=1)** en todos los archivos
-- **PHPDoc** para documentación de funciones
-- Nombres de variables en camelCase
-- Nombres de clases en PascalCase
+### Error de permisos
 
-## Problemas comunes
-
-### Error de permisos en uploads/logs
 ```bash
 chmod -R 755 public/uploads logs
 chown -R www-data:www-data public/uploads logs
 ```
 
-### Error de conexión a base de datos
-Verificar credenciales en `.env` y que el usuario tenga permisos:
+### Error de conexión DB
+
 ```sql
 GRANT ALL PRIVILEGES ON presupuestos_app.* TO 'usuario'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
-### Errores de Composer
+### Problemas con Composer
+
 ```bash
 composer clear-cache
 composer install --no-cache
 ```
 
-## Tecnologías utilizadas
+## 📄 Licencia
 
-- **Backend:** PHP 8.0+ (nativo, sin frameworks)
-- **Base de datos:** MySQL 8.0 / MariaDB 10.5
-- **Frontend:** Bootstrap 5.3, JavaScript vanilla
-- **HTMX:** Para interacciones AJAX sin escribir JavaScript
-- **PDO:** Para abstracción de base de datos
-- **Composer:** Gestión de dependencias
+Este proyecto está bajo la **Licencia MIT**. Ver [LICENSE](LICENSE) para más detalles.
 
-## Contribuir
+## 👨‍💻 Autor
 
-Las contribuciones son bienvenidas. Por favor:
+**Esteban Rsh**
 
-1. Fork del repositorio
-2. Crear una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit de cambios (`git commit -am 'Agrega nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Crear un Pull Request
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
-
-## Autor
-
-Desarrollado por [Tu Nombre]
-
-## Contacto
-
-- Email: tu_email@ejemplo.com
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
-
----
-
-**⭐ Si este proyecto te resultó útil, considera darle una estrella en GitHub**
+- GitHub: [@EstebanRsh](https://github.com/EstebanRsh)
+- Email: ruschestebanalberto081201@gmail.com

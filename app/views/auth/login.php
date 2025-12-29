@@ -39,10 +39,6 @@
                     </div>
 
                     <p class="text-muted small mt-3 mb-0 text-center">
-                        Usuario demo: <strong>admin@demo.test</strong> · Contraseña: <strong>admin123</strong>
-                    </p>
-
-                    <p class="text-muted small mt-2 mb-0 text-center">
                         ¿No tenés cuenta? <a href="<?= BASE_URL ?>registro">Registrate aquí</a>
                     </p>
                 </form>

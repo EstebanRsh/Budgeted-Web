@@ -124,9 +124,8 @@ CREATE TABLE presupuesto_items (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
   -- =====================================
-  -- Usuario admin genérico para primer acceso
-  -- email: admin@demo.com
-  -- password: admin1234
+  -- IMPORTANTE: Crea tu propio usuario SuperAdmin
+  -- Genera el hash con: echo password_hash('tu_password', PASSWORD_BCRYPT);
   -- =====================================
-  INSERT INTO usuarios (id, empresa_id, nombre, email, password_hash, is_superadmin, estado, created_at, updated_at)
-  VALUES (1, NULL, 'Administrador', 'admin@demo.com', '$2y$10$e0NRy6QwQwQwQwQwQwQwQe0NRy6QwQwQwQwQwQwQwQwQwQwQwQwQ', 1, 'activo', NOW(), NOW());
+  -- INSERT INTO usuarios (empresa_id, nombre, email, password_hash, is_superadmin, estado, created_at, updated_at)
+  -- VALUES (NULL, 'Tu Nombre', 'tu@email.com', 'HASH_GENERADO_AQUI', 1, 'activo', NOW(), NOW());
