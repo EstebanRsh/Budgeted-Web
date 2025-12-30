@@ -3,6 +3,14 @@ declare(strict_types=1);
 
 require_once dirname(__DIR__) . '/config/env.php';
 
+// Configuración segura de sesiones para producción
+ini_set('session.cookie_httponly', '1');
+ini_set('session.use_only_cookies', '1');
+ini_set('session.cookie_samesite', 'Strict');
+
+// En producción con HTTPS, descomentar la siguiente línea:
+// ini_set('session.cookie_secure', '1');
+
 session_start();
 
 if (!defined('APP_ROOT')) {

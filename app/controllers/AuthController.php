@@ -214,6 +214,9 @@ class AuthController
             }
         }
 
+        // Regenerar ID de sesión para prevenir session fixation
+        session_regenerate_id(true);
+
         // Seteamos datos mínimos de sesión
         $_SESSION['user_id']       = (int)$user['id'];
         $_SESSION['user_name']     = $user['nombre'] ?? '';
